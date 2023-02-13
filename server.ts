@@ -1,7 +1,5 @@
 
 import { serve } from "https://deno.land/std@0.174.0/http/server.ts"
-import { join } from "https://deno.land/std@0.174.0/path/mod.ts";
-import { serveFile } from "https://deno.land/std@0.174.0/http/file_server.ts"
 
 const DEBUG = false;
 const DEV = false;
@@ -21,7 +19,6 @@ async function handleRequest(request: Request): Promise<Response> {
 
    // Get and adjust the requested path name
    let { pathname } = new URL(request.url); // get the path name
-   if (pathname === '/') pathname = '/index.html'; // fix root
 
    //////////////////////////////////////////////////////
    //  was request to register for Server Sent Events  //
@@ -42,17 +39,7 @@ async function handleRequest(request: Request): Promise<Response> {
       bc.close();
       return new Response("", { status: 200 })
    }
-
-   ///////////////////////////////////////////////////
-   //           A file request: - send it           //
-   /////////////////////////////////////////////////// 
-   else {
-      // the requested full-path (client folder?)
-      const fullPath = join(Deno.cwd() + '\\' + 'viewer' + pathname)
-      if (DEV) console.log(`Serving ${fullPath}`); // show what was requested
-      // find the file -> get the content -> return it in a response
-      return serveFile(request, fullPath);
-   }
+   return new Response("", { status: 200 })
 }
 
 ////////////////////////////////////////////////////////
@@ -94,3 +81,5 @@ function registerClient(_req: Request): Response {
       },
    })
 }
+
+// deno run -A --unstable server.ts

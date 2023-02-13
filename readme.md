@@ -1,4 +1,4 @@
-# LiveLog
+# LiveLog Service
 
 LiveLog is a utility service used to remotely log messages.   
 
@@ -9,26 +9,6 @@ clients).
 
 LiveLog is effectively a pub/sub remote console.log service.
 One or more applications could stream messages to one or more viewers.
-
-<br/>
-
-![Alt text](livelog.png)
-
-## LiveLog Viewer
-The LiveLog server, on start, will open a Viewer web app in your default browser.   
-In the above example, the Viewer is displaying log messages from the DWM-GUI desktop app on the right. Whenever a UI event happens in the TextArea, a message is logged in the viewer.   
-      
-This included viewer app will register for the log stream, and then display any recieved log messages from this service. (localhost:9000)   
-
-## Example
-The included example app demonstrates the usage with a simple UI.
-Please start the LiveLog service first.
-```
-deno run -A --unstable server.ts
-cd example
-// open index.html with 'Live Server' or any other server of your choice. 
-```
-
 
 ## Interface
 The message interface is as follows:
