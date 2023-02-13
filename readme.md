@@ -1,5 +1,7 @@
 # LiveLog Service
 
+A deno deploy logging service
+
 LiveLog is a utility service used to remotely log messages.   
 
 This service recieves POST requests from one or more applications.   
@@ -39,9 +41,11 @@ export function log(thisMsg: string, clearFirst = true) {
       } 
    })
 
-   fetch("http://localhost:9000/", {
+   fetch("https://live-log.deno.dev/", {
       method: "POST",
       body: jsonBody
    })
 }
 ```
+## See LiveLog for application usage
+https://github.com/nhrones/LiveLog
